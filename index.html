@@ -1,121 +1,121 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vocabulary Flashcards Hub</title>
-    <style>
-        body {
-            font-family: "Helvetica Neue", Arial, sans-serif;
-            background-color: #f0f2f5;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            color: #333;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vocabulary Flashcards Hub</title>
+  <style>
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #f0f2f5;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      color: #333;
+    }
 
-        h1 {
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            color: #2c3e50;
-        }
+    h1 {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      color: #2c3e50;
+    }
 
-        .menu-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            width: 320px;
-            padding: 0 20px;
-        }
+    .menu-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      width: 320px;
+      padding: 0 20px;
+    }
 
-        .menu-card {
-            display: block;
-            text-decoration: none;
-            background: white;
-            border-radius: 16px;
-            padding: 25px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.2s, box-shadow 0.2s;
-            border-left: 8px solid #ccc;
-            color: #333;
-        }
+    /* 共通カードスタイル（色は CSS 変数で切替） */
+    .menu-card {
+      display: block;
+      text-decoration: none;
+      background: white;
+      border-radius: 16px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: transform 0.2s, box-shadow 0.2s;
+      border-left: 8px solid var(--theme-color, #ccc); /* ここが色の肝 */
+      color: #333;
+    }
 
-        .menu-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
+    .menu-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
 
-        .menu-card:active {
-            transform: scale(0.98);
-        }
+    .menu-card:active {
+      transform: scale(0.98);
+    }
 
-        .title {
-            display: block;
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
+    .title {
+      display: block;
+      font-size: 1.2rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: var(--theme-color, #333); /* タイトルもテーマ色に */
+    }
 
-        .subtitle {
-            display: block;
-            font-size: 0.9rem;
-            color: #666;
-        }
+    .subtitle {
+      display: block;
+      font-size: 0.9rem;
+      color: #666;
+    }
 
-        /* 昆虫編のテーマカラー */
-        .theme-insects {
-            border-left-color: #e67e22;
-        }
-        .theme-insects .title {
-            color: #e67e22;
-        }
+    /* 旧クラスは不要（残すなら --theme-color を設定） */
+    /* .theme-insects { --theme-color: #e67e22; }
+       .theme-anatomy { --theme-color: #e84118; } */
 
-        /* 解剖編のテーマカラー */
-        .theme-anatomy {
-            border-left-color: #e84118;
-        }
-        .theme-anatomy .title {
-            color: #e84118;
-        }
-        
-        .footer {
-            margin-top: 40px;
-            font-size: 0.8rem;
-            color: #999;
-        }
-    </style>
+    /* 色クラス（必要に応じて増やせます） */
+    .theme-orange { --theme-color: #e67e22; }
+    .theme-red    { --theme-color: #e84118; }
+    .theme-blue   { --theme-color: #2980b9; }
+    .theme-green  { --theme-color: #27ae60; }
+    .theme-purple { --theme-color: #8e44ad; }
+    .theme-teal   { --theme-color: #16a085; }
+    .theme-pink   { --theme-color: #ff6b81; }
+    .theme-brown  { --theme-color: #8d6e63; }
+    .theme-gold   { --theme-color: #d4a017; }
+    .theme-gray   { --theme-color: #7f8c8d; }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: #999;
+    }
+  </style>
 </head>
 <body>
+  <h1>📚 Select a Unit</h1>
 
-    <h1>📚 Select a Unit</h1>
+  <div class="menu-container">
+    <!-- ここで各カードに色クラスを付けてください -->
+    <a href="5000_2-3.html" class="menu-card theme-orange">
+      <span class="title">生物</span>
+      <span class="subtitle">動物・植物 (2・3)</span>
+    </a>
 
-    <div class="menu-container">
-        <!-- リンク先はファイル名と一致させてください -->
-        <a href="5000_2-3.html" class="menu-card theme-insects">
-            <span class="title">生物</span>
-            <span class="subtitle">動物・植物 (2・3)</span>
-        </a>
+    <a href="5000_3-4.html" class="menu-card theme-green">
+      <span class="title">生物</span>
+      <span class="subtitle">植物・昆虫 (3・4)</span>
+    </a>
 
-        <a href="5000_3-4.html" class="menu-card theme-anatomy">
-            <span class="title">生物</span>
-            <span class="subtitle">植物・昆虫 (3・4)</span>
-        </a>
+    <a href="5000_4.html" class="menu-card theme-blue">
+      <span class="title">生物</span>
+      <span class="subtitle">昆虫 (4)</span>
+    </a>
 
-        <a href="5000_4.html" class="menu-card theme-anatomy">
-            <span class="title">生物</span>
-            <span class="subtitle">昆虫 (4)</span>
-        </a>
+    <a href="5000_5.html" class="menu-card theme-purple">
+      <span class="title">生理 / 解剖</span>
+      <span class="subtitle">生理/解剖 (5)</span>
+    </a>
+  </div>
 
-        <a href="5000_5.html" class="menu-card theme-anatomy">
-            <span class="title">生理 / 解剖</span>
-            <span class="subtitle">生理/解剖 (5)</span>
-        </a>
-    </div>
-
-    <div class="footer">Happy Learning!</div>
-
+  <div class="footer">Happy Learning!</div>
 </body>
 </html>
