@@ -26,7 +26,6 @@
             color: #333;
         }
 
-        /* ヘッダー・情報表示 */
         #header {
             margin-bottom: 20px;
             text-align: center;
@@ -38,7 +37,6 @@
             margin-top: 5px;
         }
 
-        /* カードのコンテナ */
         .card-container {
             width: var(--card-width);
             height: var(--card-height);
@@ -58,7 +56,6 @@
             transform: rotateY(180deg);
         }
 
-        /* カードの表面と裏面共通 */
         .card-face {
             position: absolute;
             width: 100%;
@@ -73,7 +70,6 @@
             background: white;
         }
 
-        /* 表面 */
         .card-front {
             justify-content: center;
             align-items: center;
@@ -111,7 +107,6 @@
             background: #e0e0e0;
         }
 
-        /* 裏面 */
         .card-back {
             transform: rotateY(180deg);
             justify-content: flex-start;
@@ -135,24 +130,30 @@
             text-align: justify;
         }
 
-        /* 操作ボタン */
+        /* 修正箇所：ボタンを中央寄せにする設定 */
         .controls {
             margin-top: 30px;
             display: flex;
-            gap: 20px;
+            justify-content: center; /* 横方向の中央寄せ */
+            gap: 15px;
+            width: 100%; /* コンテナ幅をいっぱいに広げる */
+            max-width: var(--card-width);
         }
 
         button.action-btn {
-            padding: 12px 25px;
+            flex: 1; /* ボタンの幅を均等にする */
+            min-width: 140px; /* 極端に小さくならないように */
+            padding: 12px 10px;
             border: none;
             border-radius: 30px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: bold;
             cursor: pointer;
             transition: transform 0.1s, opacity 0.2s;
             color: white;
             display: flex;
             align-items: center;
+            justify-content: center; /* テキストを中央寄せ */
             gap: 8px;
         }
 
@@ -163,7 +164,6 @@
         .btn-learned { background-color: var(--success-color); }
         .btn-retry { background-color: var(--warning-color); }
 
-        /* コンプリート画面 */
         #complete-screen {
             display: none;
             text-align: center;
@@ -185,11 +185,13 @@
             margin-top: 20px;
         }
 
-        /* スマホ対応 */
         @media (max-width: 400px) {
             :root {
                 --card-width: 90vw;
                 --card-height: 70vh;
+            }
+            .controls {
+                padding: 0 10px;
             }
         }
     </style>
@@ -204,7 +206,6 @@
 
         <div class="card-container" onclick="flipCard()">
             <div class="card" id="card">
-                <!-- 表面 -->
                 <div class="card-face card-front">
                     <div class="word" id="word-display">Word</div>
                     <div class="phonetic" id="phonetic-display">[phonetic]</div>
@@ -212,12 +213,9 @@
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path></svg>
                     </button>
                 </div>
-                <!-- 裏面 -->
                 <div class="card-face card-back">
                     <div class="translation" id="translation-display">日本語訳</div>
-                    <div class="meaning-box" id="meaning-display">
-                        噛み砕いた解説がここに入ります。
-                    </div>
+                    <div class="meaning-box" id="meaning-display"></div>
                 </div>
             </div>
         </div>
@@ -246,7 +244,7 @@
             { "Word": "epidemic", "Phonetic": "[èpədémik]", "Translation": "流行、伝染病の発生", "Meaning": "特定の地域で、ある病気がワッと一気に広まる現象。<br>パンデミック（世界的大流行）の一歩手前の規模というイメージです。" },
             { "Word": "contagious", "Phonetic": "[kəntéidʒəs]", "Translation": "伝染性の", "Meaning": "触れたり、近くで呼吸したりするだけで「うつりやすい」性質のこと。<br>感染力が強い様子を指します。" },
             { "Word": "pathogen", "Phonetic": "[pǽθədʒən]", "Translation": "病原菌、病原体", "Meaning": "ウイルスや細菌など、私たちの体を病気にさせる「悪者（原因物質）」の総称です。" },
-            { "Word": "infestation", "Phonetic": "[ìnfestéiʃən]", "Translation": "（寄生虫などの）体内侵入", "Meaning": "シラミや寄生虫などが、体（や場所）にドバッと入り込んで住み着き、害を与えている状態です。" },
+            { "Word": "infestation", "Phonetic": "[ìnfestéiʃən]", "Translation": "（寄生虫などの）体内侵入", "Meaning": "シラミや寄生虫などが、体（や場所）にドバッと入り入り込んで住み着き、害を与えている状態です。" },
             { "Word": "antibiotic", "Phonetic": "[æ̀ntibaiɔ́tik]", "Translation": "抗生物質", "Meaning": "体内の「細菌（バイキン）」をやっつけたり、増えるのを止めたりする魔法の薬。<br>※ウイルスには効かないのがポイントです。" },
             { "Word": "immune system", "Phonetic": "---", "Translation": "免疫システム", "Meaning": "外から来た敵（ウイルス等）から身を守る、自分専用の「ボディーガード軍団」のような仕組み。" },
             { "Word": "vaccination", "Phonetic": "[væ̀ksənéiʃən]", "Translation": "予防接種", "Meaning": "本物の病気になる前に、弱い菌を体に入れて予行演習をさせ、免疫を作っておくこと（ワクチンを打つこと）。" },
@@ -284,7 +282,6 @@
         const gameContainer = document.getElementById('game-container');
         const completeScreen = document.getElementById('complete-screen');
 
-        // 音声の設定
         let synth = window.speechSynthesis;
         let voices = [];
 
@@ -316,14 +313,11 @@
         }
 
         function playAudio(event) {
-            event.stopPropagation(); // カードが裏返らないようにする
+            event.stopPropagation();
             const text = activeWords[currentIndex].Word;
             const utter = new SpeechSynthesisUtterance(text);
-            
-            // 人間らしい音声を優先選択
             const preferredVoices = ["Google US English", "Samantha", "Alex", "Microsoft Zira"];
             const voice = voices.find(v => preferredVoices.some(p => v.name.includes(p))) || voices.find(v => v.lang.startsWith('en'));
-            
             if (voice) utter.voice = voice;
             utter.lang = 'en-US';
             utter.rate = 0.9;
@@ -337,7 +331,6 @@
         }
 
         function markAsRetry() {
-            // 現在の単語を末尾に移動して、次へ
             currentIndex = (currentIndex + 1) % activeWords.length;
             updateCard();
         }
@@ -355,7 +348,6 @@
             updateCard();
         }
 
-        // 初期表示
         window.onload = updateCard;
     </script>
 </body>
