@@ -1027,10 +1027,10 @@ button {
   .card-container {
     flex: 0 0 auto;
     /* Don't grow or shrink */
-    width: 90%;
-    height: 350px;
-    /* Fixed height for mobile */
-    min-height: 300px;
+    width: 95%;
+    height: 420px;
+    /* Larger height for mobile */
+    min-height: 380px;
     margin: 10px 0;
     display: flex;
   }
