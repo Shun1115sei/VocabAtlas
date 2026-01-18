@@ -136,7 +136,7 @@ h1 {
   /* Fix card container sizing */
   .card-container {
     width: 95%;
-    height: 520px;
+    height: 600px;
     margin-bottom: 15px;
   }
 
@@ -474,7 +474,7 @@ button {
   }
 
   .card-container {
-    height: 520px;
+    height: 600px;
   }
 
   /* Taller for mobile to fit meaning */
@@ -1027,8 +1027,8 @@ button {
   .card-container {
     flex: 0 0 auto;
     width: 95%;
-    height: 520px;
-    min-height: 480px;
+    height: 600px;
+    min-height: 550px;
     margin: 10px 0;
     display: flex;
   }
