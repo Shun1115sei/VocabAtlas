@@ -53,30 +53,8 @@ class FirebaseManager {
 
         const provider = new firebase.auth.GoogleAuthProvider();
 
-        // Robust mobile detection: UA or screen size
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ||
-            (window.innerWidth <= 768);
-
-        if (isMobile) {
-            this.auth.signInWithRedirect(provider);
-        } else {
-            this.auth.signInWithPopup(provider)
-                .then(() => {
-                    this.isLoggingIn = false;
-                })
-                .catch((error) => {
-                    this.isLoggingIn = false;
-                    console.warn("Popup login failed, falling back to redirect:", error);
-
-                    // Specific handling for popup blocks or conflicts
-                    if (error.code === 'auth/popup-blocked' || error.code === 'auth/cancelled-popup-request' || error.code === 'auth/popup-closed-by-user') {
-                        this.auth.signInWithRedirect(provider);
-                    } else {
-                        // Fallback to redirect anyway for "conflicting popup" or others
-                        this.auth.signInWithRedirect(provider);
-                    }
-                });
-        }
+        // Force Redirect for ALL devices to ensure stability and avoid popup conflicts
+        this.auth.signInWithRedirect(provider);
     }
 
     logout() {
