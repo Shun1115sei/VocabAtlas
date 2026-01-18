@@ -9,6 +9,12 @@ class FirebaseManager {
             this.auth = firebase.auth();
             this.db = firebase.firestore();
             this.initAuthListener();
+
+            // Check for redirect result (needed for mobile login)
+            this.auth.getRedirectResult().catch((error) => {
+                console.error("Redirect Login Failed:", error);
+                alert("Login Error: " + error.message);
+            });
         }
     }
 
@@ -30,10 +36,20 @@ class FirebaseManager {
 
     login() {
         const provider = new firebase.auth.GoogleAuthProvider();
-        this.auth.signInWithPopup(provider).catch((error) => {
-            console.error("Login failed:", error);
-            alert("Login failed: " + error.message);
-        });
+
+        // Simple mobile detection
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            // Use Redirect for mobile to avoid popup blockers
+            this.auth.signInWithRedirect(provider);
+        } else {
+            // Use Popup for desktop
+            this.auth.signInWithPopup(provider).catch((error) => {
+                console.error("Login failed:", error);
+                alert("Login failed: " + error.message);
+            });
+        }
     }
 
     logout() {
