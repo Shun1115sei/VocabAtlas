@@ -1,0 +1,212 @@
+[
+    {
+        "id": 1601,
+        "word": "corporation",
+        "phonetic": "/kɔ̀ːrpəréiʃən/",
+        "translation": "(大規模な) 企業",
+        "meaning": "大規模な事業活動を行う法人組織。"
+    },
+    {
+        "id": 1602,
+        "word": "entrepreneur",
+        "phonetic": "/ɑ̀ːntrəprənə́ːr/",
+        "translation": "起業家、事業家",
+        "meaning": "自ら事業を起こし、リスクを負って経営する人。"
+    },
+    {
+        "id": 1603,
+        "word": "advertiser",
+        "phonetic": "/ǽdvərtàizər/",
+        "translation": "広告主",
+        "meaning": "広告活動を依頼する個人や法人。"
+    },
+    {
+        "id": 1604,
+        "word": "target marketing",
+        "phonetic": "",
+        "translation": "標的マーケティング",
+        "meaning": "消費者を小さな単位に分け、その特性に合った製品を提供するマーケティング戦略。"
+    },
+    {
+        "id": 1605,
+        "word": "green marketing",
+        "phonetic": "",
+        "translation": "グリーンマーケティング",
+        "meaning": "環境に優しい商品を開発してブランドのイメージを高め、売り上げを向上させるマーケティング戦略。"
+    },
+    {
+        "id": 1606,
+        "word": "brand loyalty",
+        "phonetic": "",
+        "translation": "ブランド忠誠",
+        "meaning": "消費者が特定のブランドを好み、そのブランドの商品を継続して購入すること。"
+    },
+    {
+        "id": 1607,
+        "word": "endorsement",
+        "phonetic": "/indɔ́ːrsmənt/",
+        "translation": "(有名人などによる商品の) 宣伝、推薦",
+        "meaning": "一般的には「承認、裏書き条項」という意味で使われる。"
+    },
+    {
+        "id": 1608,
+        "word": "flyer",
+        "phonetic": "/fláiər/",
+        "translation": "(広告・案内用) チラシ",
+        "meaning": "宣伝や案内のために配布される紙の広告。"
+    },
+    {
+        "id": 1609,
+        "word": "slogan",
+        "phonetic": "/slóugən/",
+        "translation": "スローガン",
+        "meaning": "広告、宣伝などに使われる、ブランドに関する情報を伝えるやさしく単純なフレーズ。"
+    },
+    {
+        "id": 1610,
+        "word": "buzzer",
+        "phonetic": "/bʌ́zər/",
+        "translation": "ブザー",
+        "meaning": "特定の製品やブランドについて好意的なうわさを流すように、企業が雇用した人。"
+    },
+    {
+        "id": 1611,
+        "word": "voucher",
+        "phonetic": "/váutʃər/",
+        "translation": "割引券、引換券",
+        "meaning": "商品の割引や引き換えに使用できる券。"
+    },
+    {
+        "id": 1612,
+        "word": "boycott",
+        "phonetic": "/bɔ́ikɑt/",
+        "translation": "不買運動",
+        "meaning": "抗議の意思表示として、特定の商品やサービスの購入を拒否すること。"
+    },
+    {
+        "id": 1613,
+        "word": "accounting",
+        "phonetic": "/əkáuntiŋ/",
+        "translation": "会計",
+        "meaning": "金銭の出入りや財産の増減を記録・計算・管理すること。"
+    },
+    {
+        "id": 1614,
+        "word": "capital",
+        "phonetic": "/kǽpətl/",
+        "translation": "資本金",
+        "meaning": "一般的には「首都」という意味で使われる。"
+    },
+    {
+        "id": 1615,
+        "word": "merger",
+        "phonetic": "/mə́ːrdʒər/",
+        "translation": "(企業・組織の) 合併",
+        "meaning": "複数の企業や組織が一つに統合されること。"
+    },
+    {
+        "id": 1616,
+        "word": "bankruptcy",
+        "phonetic": "/bǽŋkrʌptsi/",
+        "translation": "破産",
+        "meaning": "債務者が債務を完済できなくなり、財産を清算する法的手続き。"
+    },
+    {
+        "id": 1617,
+        "word": "contract",
+        "phonetic": "/kɑ́ntrækt/",
+        "translation": "契約",
+        "meaning": "法的な拘束力を持つ合意。"
+    },
+    {
+        "id": 1618,
+        "word": "franchise",
+        "phonetic": "/frǽntʃaiz/",
+        "translation": "フランチャイズ",
+        "meaning": "加盟店が本社の商号とブランドの経験、ノウハウ、認知度と引き換えに一定の金額を支払って事業を運営する経営方式。"
+    },
+    {
+        "id": 1619,
+        "word": "retail",
+        "phonetic": "/ríːteil/",
+        "translation": "小売",
+        "meaning": "小売業者と消費者の間で行われる商品の販売取引。"
+    },
+    {
+        "id": 1620,
+        "word": "supplier",
+        "phonetic": "/səpláiər/",
+        "translation": "供給者",
+        "meaning": "商品やサービスを提供する人や企業。"
+    },
+    {
+        "id": 1621,
+        "word": "manufacturer",
+        "phonetic": "/mæ̀njufǽktʃərər/",
+        "translation": "製造会社、メーカー",
+        "meaning": "製品を製造・販売する企業。"
+    },
+    {
+        "id": 1622,
+        "word": "mass production",
+        "phonetic": "",
+        "translation": "大量生産",
+        "meaning": "規格化された製品を大量に製造すること。"
+    },
+    {
+        "id": 1623,
+        "word": "raw material",
+        "phonetic": "",
+        "translation": "原料",
+        "meaning": "製品の製造に使われる未加工の材料。"
+    },
+    {
+        "id": 1624,
+        "word": "standardization",
+        "phonetic": "/stæ̀ndərdizéiʃən/",
+        "translation": "規格化",
+        "meaning": "製品の品質、形状、大きさ、性能などを一定の規格に合わせて統一すること。"
+    },
+    {
+        "id": 1625,
+        "word": "incentive",
+        "phonetic": "/inséntiv/",
+        "translation": "奨励金",
+        "meaning": "従業員の成果創出を促進するために、業務目標の達成度合いに応じて会社が提供する金銭。"
+    },
+    {
+        "id": 1626,
+        "word": "performance rating",
+        "phonetic": "",
+        "translation": "人事考課、勤務評定",
+        "meaning": "従業員の能力、実績、態度を総合的に評価すること。"
+    },
+    {
+        "id": 1627,
+        "word": "out-of-work",
+        "phonetic": "",
+        "translation": "失業中の",
+        "meaning": "仕事を持っていない状態。"
+    },
+    {
+        "id": 1628,
+        "word": "union",
+        "phonetic": "/júːnjən/",
+        "translation": "労働組合",
+        "meaning": "労働者が労働条件の維持、および向上のために自主的に組織する団体。"
+    },
+    {
+        "id": 1629,
+        "word": "labor movement",
+        "phonetic": "",
+        "translation": "労働 (組合) 運動",
+        "meaning": "労働組合を中心に、労働者の経済的、社会的地位の向上を目指す運動。"
+    },
+    {
+        "id": 1630,
+        "word": "strike",
+        "phonetic": "/straik/",
+        "translation": "ストライキ",
+        "meaning": "労働者が労働条件の改善などの要求を貫くために、業務を一時的に中断すること。"
+    }
+]
