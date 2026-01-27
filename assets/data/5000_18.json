@@ -1,0 +1,212 @@
+[
+    {
+        "id": 1801,
+        "word": "mentality",
+        "phonetic": "/mentǽləti/",
+        "translation": "考え方、精神構造",
+        "meaning": "(形) mental 精神の"
+    },
+    {
+        "id": 1802,
+        "word": "stimulus",
+        "phonetic": "/stímjuləs/",
+        "translation": "刺激",
+        "meaning": "(参考) 複数形はstimuli。"
+    },
+    {
+        "id": 1803,
+        "word": "motivation",
+        "phonetic": "/mòutəvéiʃən/",
+        "translation": "動機付け",
+        "meaning": "(参考) 一般的には「意欲、誘因」という意味で使われる。"
+    },
+    {
+        "id": 1804,
+        "word": "drive",
+        "phonetic": "/draiv/",
+        "translation": "衝動",
+        "meaning": "-"
+    },
+    {
+        "id": 1805,
+        "word": "impulse",
+        "phonetic": "/ímpʌls/",
+        "translation": "(反応を呼び起こす) 衝動",
+        "meaning": "-"
+    },
+    {
+        "id": 1806,
+        "word": "trigger",
+        "phonetic": "/trígər/",
+        "translation": "(反応を誘発する) きっかけ",
+        "meaning": "(参考) 一般的には「(銃などの) 引き金」という意味で使われる。"
+    },
+    {
+        "id": 1807,
+        "word": "instinct",
+        "phonetic": "/ínstɪŋkt/",
+        "translation": "本能",
+        "meaning": "-"
+    },
+    {
+        "id": 1808,
+        "word": "outlet",
+        "phonetic": "/áutlet/",
+        "translation": "(感情・考えなどの) はけ口",
+        "meaning": "-"
+    },
+    {
+        "id": 1809,
+        "word": "subconscious",
+        "phonetic": "/sʌbkánʃəs/",
+        "translation": "潜在意識",
+        "meaning": "(名) subconsciousness 潜在意識、(関連) unconscious 無意識的な"
+    },
+    {
+        "id": 1810,
+        "word": "intrinsic",
+        "phonetic": "/intrínzik/",
+        "translation": "固有の、内在の",
+        "meaning": "(関連) extrinsic 外部の"
+    },
+    {
+        "id": 1811,
+        "word": "repression",
+        "phonetic": "/ripréʃən/",
+        "translation": "(感情・欲求の) 抑圧",
+        "meaning": "-"
+    },
+    {
+        "id": 1812,
+        "word": "disinhibition",
+        "phonetic": "/dìsinhəbíʃən/",
+        "translation": "脱抑制",
+        "meaning": "ある刺激に対して、瞬間的に衝動や感情を抑えることができない状態。"
+    },
+    {
+        "id": 1813,
+        "word": "infancy",
+        "phonetic": "/ínfənsi/",
+        "translation": "幼児期",
+        "meaning": "-"
+    },
+    {
+        "id": 1814,
+        "word": "adolescence",
+        "phonetic": "/æ̀dəlésns/",
+        "translation": "青年期、思春期",
+        "meaning": "-"
+    },
+    {
+        "id": 1815,
+        "word": "implicit memory",
+        "phonetic": "",
+        "translation": "潜在記憶",
+        "meaning": "意識していないが、特定の行動をしたときにその行動に影響を与える記憶。"
+    },
+    {
+        "id": 1816,
+        "word": "altruistic behavior",
+        "phonetic": "",
+        "translation": "利他行動",
+        "meaning": "行為をする当事者ではなく、他人や他の集団に利益をもたらす行動。 (関連) altruism 利他主義"
+    },
+    {
+        "id": 1817,
+        "word": "phenomenon",
+        "phonetic": "/fənɑ́mənɑ̀n/",
+        "translation": "現象",
+        "meaning": "(参考) 複数形はphenomena。"
+    },
+    {
+        "id": 1818,
+        "word": "culture shock",
+        "phonetic": "",
+        "translation": "カルチャー・ショック",
+        "meaning": "慣れない文化や社会環境に直面したときに、感情の不安を感じる状態。"
+    },
+    {
+        "id": 1819,
+        "word": "panic",
+        "phonetic": "/pǽnik/",
+        "translation": "(突然の) 強い恐怖",
+        "meaning": "-"
+    },
+    {
+        "id": 1820,
+        "word": "craze",
+        "phonetic": "/kreiz/",
+        "translation": "(一時的な) 熱狂",
+        "meaning": "-"
+    },
+    {
+        "id": 1821,
+        "word": "peer group pressure",
+        "phonetic": "",
+        "translation": "同調圧力",
+        "meaning": "仲間で少数意見を持っている人が多数の意見に同調しなければならないと感じる圧迫感。"
+    },
+    {
+        "id": 1822,
+        "word": "placebo effect",
+        "phonetic": "",
+        "translation": "プラシーボ効果",
+        "meaning": "薬効がない偽薬を偽って投与したときに、投薬された安心感などから患者の症状が好転する心理作用。 (関連) nocebo effect ノシーボ効果"
+    },
+    {
+        "id": 1823,
+        "word": "stereotype",
+        "phonetic": "/stériətàip/",
+        "translation": "固定観念、定型化されたイメージ",
+        "meaning": "-"
+    },
+    {
+        "id": 1824,
+        "word": "hypothesis",
+        "phonetic": "/haipɑ́θəsis/",
+        "translation": "仮説",
+        "meaning": "(参考) 複数形はhypotheses。"
+    },
+    {
+        "id": 1825,
+        "word": "defense mechanism",
+        "phonetic": "",
+        "translation": "防御機構",
+        "meaning": "自我が脅威を受けたとき、自分自身を守るために無意識に現れる思考および行動手段。"
+    },
+    {
+        "id": 1826,
+        "word": "displacement activity",
+        "phonetic": "",
+        "translation": "転位行動",
+        "meaning": "逃走か攻撃かといった相反する衝動の葛藤状況で起こる、第3の行動。"
+    },
+    {
+        "id": 1827,
+        "word": "passive-aggressive behavior",
+        "phonetic": "",
+        "translation": "受動的攻撃行動",
+        "meaning": "怒りを直接表さずに、妨害、意図的な遅延など、消極的な方法で敵意を示す行動。"
+    },
+    {
+        "id": 1828,
+        "word": "cognitive dissonance",
+        "phonetic": "/kɑ́gnətiv dísənəns/",
+        "translation": "認知的不協和",
+        "meaning": "信念と行動との間に矛盾が生じるときに発生する認知的に不一致な状態。"
+    },
+    {
+        "id": 1829,
+        "word": "audience effect",
+        "phonetic": "",
+        "translation": "見物効果",
+        "meaning": "他人に見られていることによって、行動の量、速度、質などが影響を受ける現象。"
+    },
+    {
+        "id": 1830,
+        "word": "Freudian",
+        "phonetic": "/frɔ́idiən/",
+        "translation": "フロイト(派)の",
+        "meaning": "ジークムント・フロイト(Sigmund Freud, 1856-1939): オーストリア出身の精神分析学の創設者。"
+    }
+]
