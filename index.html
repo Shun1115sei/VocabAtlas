@@ -1,232 +1,277 @@
-<!DOCTYPE html>
+を<!doctype html>
 <html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VocabAtlas - Your Learning Journey</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#1a237e" />
+    <link rel="apple-touch-icon" href="assets/icons/icon-192.png" />
+    <link rel="icon" type="image/png" href="assets/icons/icon-192.png" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>VocabAtlas - Your Learning Journey</title>
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1a237e">
-  <link rel="apple-touch-icon" href="assets/icons/icon-192.png">
-  <link rel="icon" type="image/png" href="assets/icons/icon-192.png">
-</head>
-
-<body class="home-body">
-
-  <!-- Auth UI -->
-  <div class="auth-container">
-    <button id="login-btn" onclick="dbManager.login()">
-      <span style="font-size:1.2rem">G</span> Sign in
-    </button>
-    <div id="user-icon" onclick="dbManager.logout()" title="Click to Logout"></div>
-  </div>
-
-  <!-- Search Trigger -->
-  <div class="fab-search" onclick="searchApp.open()" title="Search">🔍</div>
-
-  <div class="hero-section">
-    <div class="hero-content">
-      <h1 class="hero-title">VocabAtlas</h1>
-      <p class="hero-subtitle">Master your vocabulary, one card at a time.</p>
-    </div>
-  </div>
-
-  <main class="dashboard-container">
-
-    <!-- Quick Actions -->
-    <div style="text-align:center; margin-bottom: 30px;">
-      <button class="btn-restart" onclick="location.href='quiz.html?deck=all'"
-        style="background: linear-gradient(135deg, #6c5ce7, #a29bfe); border:none;">
-        🧠 Challenge All Words Quiz
+  <body class="home-body">
+    <!-- Auth UI -->
+    <div class="auth-container">
+      <button id="login-btn" onclick="dbManager.login()">
+        <span style="font-size: 1.2rem">G</span> Sign in
       </button>
+      <div
+        id="user-icon"
+        onclick="dbManager.logout()"
+        title="Click to Logout"
+      ></div>
     </div>
 
-    <!-- Section 1: 究極の英単語2 -->
-    <h2 class="section-title">究極の英単語2 (Unknown Words)</h2>
-    <div class="deck-grid">
-      <a href="kyukyoku_5000-5200.html" class="deck-card theme-pink">
-        <div class="deck-icon">🚀</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Ultimate Vocab</h3>
-          <span class="deck-tag">5000-5200</span>
-        </div>
-      </a>
-    </div>
+    <!-- Search Trigger -->
+    <div class="fab-search" onclick="searchApp.open()" title="Search">🔍</div>
 
-    <!-- Section 2: TOEFLテストでる単5000・頻出単語 -->
-    <h2 class="section-title" style="margin-top: 40px;">TOEFLテストでる単5000・頻出単語</h2>
-    <div class="deck-grid">
-      <!-- Coming Soon -->
-      <div class="deck-card theme-gray" style="opacity: 0.6; cursor: default;">
-        <div class="deck-icon">🚧</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Coming Soon</h3>
-          <span class="deck-tag">Day 1-30</span>
-        </div>
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1 class="hero-title">VocabAtlas</h1>
+        <p class="hero-subtitle">Master your vocabulary, one card at a time.</p>
       </div>
     </div>
 
-    <!-- Section 3: TOEFLテストでる単5000・テーマ別単語 -->
-    <h2 class="section-title" style="margin-top: 40px;">TOEFLテストでる単5000・テーマ別単語</h2>
-    <div class="deck-grid">
-      <!-- Biology Series -->
-      <a href="5000_2-3.html" class="deck-card theme-orange">
-        <div class="deck-icon">🧬</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Biology: Flora & Fauna</h3>
-          <span class="deck-tag">Vol. 2-3</span>
+    <main class="dashboard-container">
+      <!-- Quick Actions -->
+      <div style="text-align: center; margin-bottom: 30px">
+        <button
+          class="btn-restart"
+          onclick="location.href='quiz.html?deck=all'"
+          style="
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            border: none;
+          "
+        >
+          🧠 Challenge All Words Quiz
+        </button>
+      </div>
+
+      <!-- Section 1: 究極の英単語2 -->
+      <h2 class="section-title">究極の英単語2 (Unknown Words)</h2>
+      <div class="deck-grid">
+        <a href="kyukyoku_5000-5200.html" class="deck-card theme-pink">
+          <div class="deck-icon">🚀</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Ultimate Vocab</h3>
+            <span class="deck-tag">5000-5200</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Section 2: TOEFLテストでる単5000・頻出単語 -->
+      <h2 class="section-title" style="margin-top: 40px">
+        TOEFLテストでる単5000・頻出単語
+      </h2>
+      <div class="deck-grid">
+        <!-- Coming Soon -->
+        <div class="deck-card theme-gray" style="opacity: 0.6; cursor: default">
+          <div class="deck-icon">🚧</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Coming Soon</h3>
+            <span class="deck-tag">Day 1-30</span>
+          </div>
         </div>
-      </a>
+      </div>
 
-      <a href="5000_3-4.html" class="deck-card theme-red">
-        <div class="deck-icon">🌿</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Biology: Plants & Insects</h3>
-          <span class="deck-tag">Vol. 3-4</span>
-        </div>
-      </a>
+      <!-- Section 3: TOEFLテストでる単5000・テーマ別単語 -->
+      <h2 class="section-title" style="margin-top: 40px">
+        TOEFLテストでる単5000・テーマ別単語
+      </h2>
+      <div class="deck-grid">
+        <!-- Biology Series -->
+        <a href="5000_2-3.html" class="deck-card theme-orange">
+          <div class="deck-icon">🧬</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Biology: Flora & Fauna</h3>
+            <span class="deck-tag">Vol. 2-3</span>
+          </div>
+        </a>
 
-      <a href="5000_4.html" class="deck-card theme-blue">
-        <div class="deck-icon">🐞</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Biology: Insects</h3>
-          <span class="deck-tag">Vol. 4</span>
-        </div>
-      </a>
+        <a href="5000_3-4.html" class="deck-card theme-red">
+          <div class="deck-icon">🌿</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Biology: Plants & Insects</h3>
+            <span class="deck-tag">Vol. 3-4</span>
+          </div>
+        </a>
 
-      <!-- Medical/Physiology -->
-      <a href="5000_5.html" class="deck-card theme-green">
-        <div class="deck-icon">🫀</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Physiology & Anatomy</h3>
-          <span class="deck-tag">Vol. 5</span>
-        </div>
-      </a>
+        <a href="5000_4.html" class="deck-card theme-blue">
+          <div class="deck-icon">🐞</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Biology: Insects</h3>
+            <span class="deck-tag">Vol. 4</span>
+          </div>
+        </a>
 
-      <a href="5000_6.html" class="deck-card theme-purple">
-        <div class="deck-icon">🩺</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Medicine & Health</h3>
-          <span class="deck-tag">Vol. 6</span>
-        </div>
-      </a>
+        <!-- Medical/Physiology -->
+        <a href="5000_5.html" class="deck-card theme-green">
+          <div class="deck-icon">🫀</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Physiology & Anatomy</h3>
+            <span class="deck-tag">Vol. 5</span>
+          </div>
+        </a>
 
-      <!-- Sciences -->
-      <a href="5000_7.html" class="deck-card theme-teal">
-        <div class="deck-icon">⚛️</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Physics</h3>
-          <span class="deck-tag">Vol. 7</span>
-        </div>
-      </a>
+        <a href="5000_6.html" class="deck-card theme-purple">
+          <div class="deck-icon">🩺</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Medicine & Health</h3>
+            <span class="deck-tag">Vol. 6</span>
+          </div>
+        </a>
 
-      <a href="5000_8.html" class="deck-card theme-brown">
-        <div class="deck-icon">🧪</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Chemistry</h3>
-          <span class="deck-tag">Vol. 8</span>
-        </div>
-      </a>
+        <!-- Sciences -->
+        <a href="5000_7.html" class="deck-card theme-teal">
+          <div class="deck-icon">⚛️</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Physics</h3>
+            <span class="deck-tag">Vol. 7</span>
+          </div>
+        </a>
 
-      <a href="5000_9.html" class="deck-card theme-gold">
-        <div class="deck-icon">🌍</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Environment & Ecology</h3>
-          <span class="deck-tag">Vol. 9</span>
-        </div>
-      </a>
+        <a href="5000_8.html" class="deck-card theme-brown">
+          <div class="deck-icon">🧪</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Chemistry</h3>
+            <span class="deck-tag">Vol. 8</span>
+          </div>
+        </a>
 
-      <a href="5000_10.html" class="deck-card theme-gray">
-        <div class="deck-icon">🌦️</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Meteorology</h3>
-          <span class="deck-tag">Vol. 10</span>
-        </div>
-      </a>
+        <a href="5000_9.html" class="deck-card theme-gold">
+          <div class="deck-icon">🌍</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Environment & Ecology</h3>
+            <span class="deck-tag">Vol. 9</span>
+          </div>
+        </a>
 
-      <a href="5000_11.html" class="deck-card theme-blue">
-        <div class="deck-icon">🪐</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Astronomy</h3>
-          <span class="deck-tag">Vol. 11</span>
-        </div>
-      </a>
+        <a href="5000_10.html" class="deck-card theme-gray">
+          <div class="deck-icon">🌦️</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Meteorology</h3>
+            <span class="deck-tag">Vol. 10</span>
+          </div>
+        </a>
 
-      <a href="5000_12.html" class="deck-card theme-brown">
-        <div class="deck-icon">🏔️</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Geography & Geology</h3>
-          <span class="deck-tag">Vol. 12</span>
-        </div>
-      </a>
+        <a href="5000_11.html" class="deck-card theme-blue">
+          <div class="deck-icon">🪐</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Astronomy</h3>
+            <span class="deck-tag">Vol. 11</span>
+          </div>
+        </a>
 
-      <a href="5000_13.html" class="deck-card theme-gold">
-        <div class="deck-icon">⚡</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Resources & Energy</h3>
-          <span class="deck-tag">Vol. 13</span>
-        </div>
-      </a>
+        <a href="5000_12.html" class="deck-card theme-brown">
+          <div class="deck-icon">🏔️</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Geography & Geology</h3>
+            <span class="deck-tag">Vol. 12</span>
+          </div>
+        </a>
 
-      <a href="5000_14.html" class="deck-card theme-red">
-        <div class="deck-icon">🏛️</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Politics & Diplomacy</h3>
-          <span class="deck-tag">Vol. 14</span>
-        </div>
-      </a>
+        <a href="5000_13.html" class="deck-card theme-gold">
+          <div class="deck-icon">⚡</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Resources & Energy</h3>
+            <span class="deck-tag">Vol. 13</span>
+          </div>
+        </a>
 
-      <a href="5000_15.html" class="deck-card theme-green">
-        <div class="deck-icon">💰</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Economics</h3>
-          <span class="deck-tag">Vol. 15</span>
-        </div>
-      </a>
+        <a href="5000_14.html" class="deck-card theme-red">
+          <div class="deck-icon">🏛️</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Politics & Diplomacy</h3>
+            <span class="deck-tag">Vol. 14</span>
+          </div>
+        </a>
 
-      <a href="5000_16.html" class="deck-card theme-blue">
-        <div class="deck-icon">🏢</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Business & Mgmt</h3>
-          <span class="deck-tag">Vol. 16</span>
-        </div>
-      </a>
+        <a href="5000_15.html" class="deck-card theme-green">
+          <div class="deck-icon">💰</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Economics</h3>
+            <span class="deck-tag">Vol. 15</span>
+          </div>
+        </a>
 
-      <a href="5000_17.html" class="deck-card theme-red">
-        <div class="deck-icon">⚖️</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Law</h3>
-          <span class="deck-tag">Vol. 17</span>
-        </div>
-      </a>
+        <a href="5000_16.html" class="deck-card theme-blue">
+          <div class="deck-icon">🏢</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Business & Mgmt</h3>
+            <span class="deck-tag">Vol. 16</span>
+          </div>
+        </a>
 
-      <a href="5000_18.html" class="deck-card theme-green">
-        <div class="deck-icon">🧠</div>
-        <div class="deck-info">
-          <h3 class="deck-title">Psychology</h3>
-          <span class="deck-tag">Vol. 18</span>
-        </div>
-      </a>
-    </div>
-  </main>
+        <a href="5000_17.html" class="deck-card theme-red">
+          <div class="deck-icon">⚖️</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Law</h3>
+            <span class="deck-tag">Vol. 17</span>
+          </div>
+        </a>
 
-  <footer class="app-footer">
-    <p>Happy Learning! The Best Is Yet To Be.</p>
-  </footer>
+        <a href="5000_18.html" class="deck-card theme-green">
+          <div class="deck-icon">🧠</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Psychology</h3>
+            <span class="deck-tag">Vol. 18</span>
+          </div>
+        </a>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
-  <script src="assets/js/firebase-config.js"></script>
-  <script src="assets/js/firebase-manager.js"></script>
-  <script src="assets/js/auth-guard.js"></script>
-  <script src="assets/js/search.js"></script>
-  <!-- App JS (for shared logic if any) -->
-  <!--     <script src="assets/js/srs.js"></script>
+        <a href="5000_19.html" class="deck-card theme-brown">
+          <div class="deck-icon">🏛️</div>
+          <div class="deck-info">
+            <h3 class="deck-title">History</h3>
+            <span class="deck-tag">Vol. 19</span>
+          </div>
+        </a>
+
+        <a href="5000_20.html" class="deck-card theme-teal">
+          <div class="deck-icon">🦴</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Anthropology</h3>
+            <span class="deck-tag">Vol. 20</span>
+          </div>
+        </a>
+
+        <a href="5000_21.html" class="deck-card theme-gold">
+          <div class="deck-icon">🏺</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Archaeology</h3>
+            <span class="deck-tag">Vol. 21</span>
+          </div>
+        </a>
+
+        <a href="5000_22.html" class="deck-card theme-purple">
+          <div class="deck-icon">🧘</div>
+          <div class="deck-info">
+            <h3 class="deck-title">Philosophy &amp; Religion</h3>
+            <span class="deck-tag">Vol. 22</span>
+          </div>
+        </a>
+      </div>
+    </main>
+
+    <footer class="app-footer">
+      <p>Happy Learning! The Best Is Yet To Be.</p>
+    </footer>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="assets/js/firebase-config.js"></script>
+    <script src="assets/js/firebase-manager.js"></script>
+    <script src="assets/js/auth-guard.js"></script>
+    <script src="assets/js/search.js"></script>
+    <!-- App JS (for shared logic if any) -->
+    <!--     <script src="assets/js/srs.js"></script>
     <script src="assets/js/app.js"></script> -->
-</body>
-
+  </body>
 </html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anthropology (Vol. 20)</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Anthropology (Vol. 20)</h1>
+        <div class="status-bar">
+            残り: <strong id="remaining-count">0</strong> 枚
+        </div>
+    </header>
+
+    <div class="card-container">
+        <div class="completed-overlay" id="completed-overlay">
+            <div class="completed-title">🎉</div>
+            <p class="completed-text">ALL WORDS LEARNED!</p>
+            <button class="btn-restart" onclick="app.resetAll()">Start Over</button>
+        </div>
+
+        <div class="card" id="flashcard">
+            <div class="card-face card-front">
+                <div class="word" id="word">Word</div>
+                <div class="phonetic" id="phonetic">/phonetic/</div>
+                <button class="btn-audio" onclick="app.playAudio(event)" title="Pronounce">🔊</button>
+                <div class="click-hint">Click to Flip</div>
+            </div>
+            <div class="card-face card-back">
+                <div class="translation" id="translation">Translation</div>
+                <div class="meaning" id="meaning">Meaning</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls-container">
+        <div class="grading-group">
+            <button class="btn-grade btn-unknown" onclick="app.markUnknown(event)">
+                🔄 Review
+                <span>(Keep in list)</span>
+            </button>
+            <button class="btn-grade btn-known" onclick="app.markKnown(event)">
+                ✅ Got it
+                <span>(Remove)</span>
+            </button>
+        </div>
+
+        <div class="nav-group">
+            <button class="nav-btn" onclick="app.prevCard(event)">← Prev</button>
+            <button class="nav-btn" onclick="app.shuffleCards(event)">🔀 Shuffle</button>
+            <button class="nav-btn" onclick="app.resetAll()">↻ Reset</button>
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <a href="index.html" class="nav-btn" style="text-decoration:none;">🏠 Home</a>
+        </div>
+    </div>
+
+    <script src="assets/js/confetti.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <script>
+        const vocabulary = [
+            {
+                "word": "anthropology",
+                "phonetic": "[ænθrəpɑ́lədʒi]",
+                "translation": "人類学",
+                "meaning": "人類の起源・進化・文明発展の特徴などを研究する学問。<br>文化人類学・生物人類学など、複数のトピックを扱う分野。"
+            },
+            {
+                "word": "ancestor",
+                "phonetic": "[ǽnsestər]",
+                "translation": "祖先",
+                "meaning": "自分よりも前の世代の血縁者。<br>ancestry（家系、血統）と関連。descendant（子孫）の対義語。"
+            },
+            {
+                "word": "descendant",
+                "phonetic": "[disénddənt]",
+                "translation": "子孫",
+                "meaning": "ある人物や祖先から受け継いだ血筋を持つ後の世代の人。<br>ancestor（祖先）の対義語。"
+            },
+            {
+                "word": "evolution",
+                "phonetic": "[èvəlúːʃən]",
+                "translation": "進化",
+                "meaning": "生物が世代を重ねる中で形質を変化させるプロセス。<br>生物学的変化だけでなく、思想や社会の発展にも用いる。"
+            },
+            {
+                "word": "anthropoid",
+                "phonetic": "[ǽnθrəpɔid]",
+                "translation": "類人猿",
+                "meaning": "ゴリラやチンパンジーのように人間に外見が近い哺乳類。<br>人間に似た形態を持つ霊長類を指す。"
+            },
+            {
+                "word": "Australopithecus",
+                "phonetic": "[ɔ̀streiləpíθikəs]",
+                "translation": "アウストラロピテクス",
+                "meaning": "約400〜100万年前にアフリカに生息した初期の人類の祖先。<br>直立二足歩行が確認された最初期の人類の一つ。"
+            },
+            {
+                "word": "Homo erectus",
+                "phonetic": "[hóumou iréktəs]",
+                "translation": "ホモ・エレクトス",
+                "meaning": "直立二足歩行を行った初期の人類種。<br>ホモサピエンスの祖先的な存在で、道具の使用や火の利用などの技術・習慣を持っていた。"
+            },
+            {
+                "word": "Neanderthal man",
+                "phonetic": "[niǽndərtɑːl mæn]",
+                "translation": "ネアンデルタール人",
+                "meaning": "約40万〜4万年前にヨーロッパ・中東に生息した旧人類。<br>ホモサピエンスと同時期に存在し、高度な道具製作や埋葬の習慣を持っていた。"
+            },
+            {
+                "word": "tribe",
+                "phonetic": "[traib]",
+                "translation": "部族",
+                "meaning": "共通の文化・言語・祖先を持ち、まとまって生活する社会集団。<br>国家より小さく、氏族（clan）より大きい単位。"
+            },
+            {
+                "word": "clan",
+                "phonetic": "[klæn]",
+                "translation": "氏族",
+                "meaning": "共通の祖先を持つと信じる同族集団。<br>部族（tribe）の中のより小さな血縁単位。"
+            },
+            {
+                "word": "patriarchal",
+                "phonetic": "[pèitriɑ́ːrkəl]",
+                "translation": "家父長制の",
+                "meaning": "男性（父親）が家族・社会の権威の頂点に立つ制度・社会に関する形容詞。<br>matriarchal（女家長制の）の対義語。"
+            },
+            {
+                "word": "hierarchy",
+                "phonetic": "[háiərɑːrki]",
+                "translation": "階層・組織",
+                "meaning": "社会や組織内での地位・権力の序列構造。<br>上位から下位への支配・統制関係を表す。"
+            },
+            {
+                "word": "civilization",
+                "phonetic": "[sìvələzéiʃən]",
+                "translation": "文明",
+                "meaning": "農業・都市・法律・文字・技術などが発展した高度な人間社会の状態。<br>人類の文化的・社会的発展の総体。"
+            },
+            {
+                "word": "nomadic",
+                "phonetic": "[nouméidik]",
+                "translation": "遊牧民の",
+                "meaning": "一定の住居を持たず、食料や牧草地を求めて移動し続ける生活様式に関する形容詞。<br>名詞形は nomad（遊牧民）。"
+            },
+            {
+                "word": "sedentism",
+                "phonetic": "[sédəntizm]",
+                "translation": "定住生活",
+                "meaning": "遊牧生活をやめ、特定の場所に定着して生活すること。<br>hunting and gathering（狩猟採集）の対義語で、農業の発展とともに広まった。"
+            },
+            {
+                "word": "gathering",
+                "phonetic": "[gǽðəriŋ]",
+                "translation": "採集",
+                "meaning": "野生の植物・果実・食料を自然から収集すること。<br>hunting（狩猟）とセットで用いられる（hunting and gathering）。"
+            },
+            {
+                "word": "agriculture",
+                "phonetic": "[ǽgrikʌ̀ltʃər]",
+                "translation": "農業",
+                "meaning": "土地を耕して作物を栽培し、家畜を飼育する産業。<br>定住化（sedentism）と密接に関連する。"
+            },
+            {
+                "word": "irrigation",
+                "phonetic": "[ìrəgéiʃən]",
+                "translation": "灌漑",
+                "meaning": "農業に必要な水を水路・用水路などで引いて農地に供給すること。<br>乾燥地域での農業を可能にした技術。"
+            },
+            {
+                "word": "cultivation",
+                "phonetic": "[kʌ̀ltəvéiʃən]",
+                "translation": "耕作",
+                "meaning": "田畑を耕し、作物を育てること。<br>domesticate は「（動植物）を家畜化する・飼いならす」という意味。"
+            },
+            {
+                "word": "husbandry",
+                "phonetic": "[hʌ́zbəndri]",
+                "translation": "畜産・家畜の飼育",
+                "meaning": "農業の一部門で、家畜を管理・繁殖させ食料や資源を生産すること。<br>animal husbandry（畜産業）の形でよく用いる。"
+            },
+            {
+                "word": "domestication",
+                "phonetic": "[dəmèstikéiʃən]",
+                "translation": "家畜化",
+                "meaning": "野生の動植物を人間の管理下に置き、利用しやすくする過程。<br>農業革命において重要な役割を果たした。"
+            },
+            {
+                "word": "livestock",
+                "phonetic": "[láivstɑ̀k]",
+                "translation": "家畜",
+                "meaning": "農業や食料生産のために飼育される動物の総称。<br>牛・豚・羊・鶏などが含まれる。"
+            },
+            {
+                "word": "self-sustaining",
+                "phonetic": "[sèlf səstéiniŋ]",
+                "translation": "自立した・自活の",
+                "meaning": "外部の援助なしに自らの必要を満たせる状態。<br>農業共同体や集落が独自に食料・資源を確保できることを指す。"
+            },
+            {
+                "word": "aborigine",
+                "phonetic": "[æbərídʒəni]",
+                "translation": "先住民",
+                "meaning": "ある土地に最初から住んでいた民族。<br>大文字の Aborigines はオーストラリア先住民を特に指す。"
+            },
+            {
+                "word": "ethnic",
+                "phonetic": "[éθnik]",
+                "translation": "民族の",
+                "meaning": "共通の言語・文化・歴史・血縁を持つ集団に関する形容詞。<br>ethnology（民族学）は民族を比較・研究する学問。"
+            },
+            {
+                "word": "communal",
+                "phonetic": "[kəmjúːnəl]",
+                "translation": "共同の",
+                "meaning": "集団や地域社会が共同で使用・所有・運営することに関する形容詞。<br>共同体的な生活様式を表す。"
+            },
+            {
+                "word": "oral history",
+                "phonetic": "[ɔ́ːrəl hístəri]",
+                "translation": "口述歴史",
+                "meaning": "文字記録ではなく、人々の口頭証言や語り伝えによって保存・伝承される歴史。<br>文字を持たない社会の歴史研究に重要な手法。"
+            },
+            {
+                "word": "totemism",
+                "phonetic": "[tóutemizm]",
+                "translation": "トーテミズム",
+                "meaning": "動物や自然物をトーテム（守護霊・象徴）として崇拝し、氏族や集団の象徴とする信仰体系。<br>北アメリカ先住民などに見られる。"
+            },
+            {
+                "word": "animism",
+                "phonetic": "[ǽnimizm]",
+                "translation": "アニミズム",
+                "meaning": "生物を含む生きとし生けるものすべてに魂（アニマ）が宿ると信じる世界観・宗教観。<br>多くの先住民文化に共通する信仰。"
+            },
+            {
+                "word": "cannibalism",
+                "phonetic": "[kǽnibəlizm]",
+                "translation": "食人の慣習",
+                "meaning": "人間が人間の肉を食べる行為または慣習。<br>anthropophagy とも言う。一部の文化において宗教的・儀礼的文脈で行われた記録がある。"
+            }
+        ];
+
+        const app = new FlashcardApp(vocabulary);
+    </script>
+</body>
+</html>

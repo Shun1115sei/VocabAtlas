@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Philosophy &amp; Religion (Vol. 22)</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Philosophy &amp; Religion (Vol. 22)</h1>
+        <div class="status-bar">
+            残り: <strong id="remaining-count">0</strong> 枚
+        </div>
+    </header>
+
+    <div class="card-container">
+        <div class="completed-overlay" id="completed-overlay">
+            <div class="completed-title">🎉</div>
+            <p class="completed-text">ALL WORDS LEARNED!</p>
+            <button class="btn-restart" onclick="app.resetAll()">Start Over</button>
+        </div>
+
+        <div class="card" id="flashcard">
+            <div class="card-face card-front">
+                <div class="word" id="word">Word</div>
+                <div class="phonetic" id="phonetic">/phonetic/</div>
+                <button class="btn-audio" onclick="app.playAudio(event)" title="Pronounce">🔊</button>
+                <div class="click-hint">Click to Flip</div>
+            </div>
+            <div class="card-face card-back">
+                <div class="translation" id="translation">Translation</div>
+                <div class="meaning" id="meaning">Meaning</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls-container">
+        <div class="grading-group">
+            <button class="btn-grade btn-unknown" onclick="app.markUnknown(event)">
+                🔄 Review
+                <span>(Keep in list)</span>
+            </button>
+            <button class="btn-grade btn-known" onclick="app.markKnown(event)">
+                ✅ Got it
+                <span>(Remove)</span>
+            </button>
+        </div>
+
+        <div class="nav-group">
+            <button class="nav-btn" onclick="app.prevCard(event)">← Prev</button>
+            <button class="nav-btn" onclick="app.shuffleCards(event)">🔀 Shuffle</button>
+            <button class="nav-btn" onclick="app.resetAll()">↻ Reset</button>
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <a href="index.html" class="nav-btn" style="text-decoration:none;">🏠 Home</a>
+        </div>
+    </div>
+
+    <script src="assets/js/confetti.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <script>
+        const vocabulary = [
+            {
+                "word": "philosophy",
+                "phonetic": "[filɑ́səfi]",
+                "translation": "哲学",
+                "meaning": "世界・存在・知識・価値・倫理などについて根本的な問いを立て、理性によって探究する学問。<br>時代や文化の重要な思想家の哲学を学ぶ。"
+            },
+            {
+                "word": "intellectual",
+                "phonetic": "[intəléktʃuəl]",
+                "translation": "知識人・知的な",
+                "meaning": "高度な知性や学識を持つ人、またはそのような性質を持つこと。<br>名詞では「知識人・識者」、形容詞では「知的な」という意味。"
+            },
+            {
+                "word": "liberty",
+                "phonetic": "[líbərti]",
+                "translation": "自由",
+                "meaning": "支配や権威からの自由。政治的・市民的権利としての自由を指すことが多い。<br>複数形 liberties は「特権・自由権」を意味する。"
+            },
+            {
+                "word": "empirical",
+                "phonetic": "[impírikəl]",
+                "translation": "経験的な",
+                "meaning": "理論ではなく、実験や観察・経験に基づいていること。<br>theoretical（理論的な）の対義語。"
+            },
+            {
+                "word": "rational",
+                "phonetic": "[rǽʃənəl]",
+                "translation": "合理的な・理性的な",
+                "meaning": "感情ではなく論理や理性に基づいて考え・行動すること。<br>rationalism（合理主義）と関連する。"
+            },
+            {
+                "word": "virtuous",
+                "phonetic": "[vɜ́ːrtʃuəs]",
+                "translation": "道徳的な・高潔な",
+                "meaning": "道徳的に優れた、品行方正な様子。<br>名詞形は virtue（美徳）。"
+            },
+            {
+                "word": "criterion",
+                "phonetic": "[kraɪtíəriən]",
+                "translation": "基準",
+                "meaning": "判断や評価を行う際の根拠・標準となるもの。<br>複数形は criteria。"
+            },
+            {
+                "word": "ethics",
+                "phonetic": "[éθiks]",
+                "translation": "倫理学",
+                "meaning": "道徳的な善悪・正不正を哲学的に探究する学問。<br>ethical（倫理的な）、moral（道徳の）と関連する。"
+            },
+            {
+                "word": "utilitarian",
+                "phonetic": "[juːtilətɛ́əriən]",
+                "translation": "功利主義の",
+                "meaning": "「最大多数の最大幸福の実現」を理念とする倫理的立場に関する。<br>utilitarianism（功利主義）の形容詞形。一般的には「実用本位の」という意味でも使われる。"
+            },
+            {
+                "word": "aesthetics",
+                "phonetic": "[esθétiks]",
+                "translation": "美学",
+                "meaning": "美の本質と価値を哲学的に探究する学問。<br>芸術・自然の美や「美しさとは何か」という問いを扱う。"
+            },
+            {
+                "word": "humanism",
+                "phonetic": "[hjúːmənizm]",
+                "translation": "人文主義・人本主義",
+                "meaning": "人間の福祉・尊厳・理性を主な関心事とする人間中心的な思想。<br>humanistic（人文主義の）と関連する。"
+            },
+            {
+                "word": "holism",
+                "phonetic": "[hóulizm]",
+                "translation": "全体論",
+                "meaning": "全体は部分の総和ではなく、それ以上のものであるという考え方。<br>holistic（全体論的な）として医学や哲学でよく用いられる。"
+            },
+            {
+                "word": "nationalism",
+                "phonetic": "[næʃənəlizm]",
+                "translation": "民族主義・国民主義",
+                "meaning": "民族意識をもとに、民族を基本単位として国家を強化し、自国の政治的・経済的利益を追求する思想・傾向。"
+            },
+            {
+                "word": "imperialism",
+                "phonetic": "[impíəriəlizm]",
+                "translation": "帝国主義",
+                "meaning": "大国が他の国を植民地化・支配下に置いて、自国の政治的・経済的利益を追求する傾向・思想。"
+            },
+            {
+                "word": "antagonism",
+                "phonetic": "[æntǽgənizm]",
+                "translation": "敵意・対立",
+                "meaning": "相手に対する敵意や強い対立・反発の感情。<br>hostility（敵意）と同義。"
+            },
+            {
+                "word": "transcendentalism",
+                "phonetic": "[trænsendéntəlizm]",
+                "translation": "超越主義",
+                "meaning": "個人の精神的な側面や知識・想像力・直感を重視する哲学的思想。<br>19世紀のアメリカで展開された代表的な哲学運動。"
+            },
+            {
+                "word": "Enlightenment",
+                "phonetic": "[inláitnmənt]",
+                "translation": "啓蒙主義",
+                "meaning": "17〜18世紀ヨーロッパで広まった、理性・科学・個人の自由を重視する知的・思想的運動。<br>近代民主主義思想の基盤となった。"
+            },
+            {
+                "word": "theology",
+                "phonetic": "[θiɑ́lədʒi]",
+                "translation": "神学",
+                "meaning": "神や宗教の本質・教義・信仰を体系的に研究する学問。<br>特定の宗教の信仰や教えを哲学的に探究する。"
+            },
+            {
+                "word": "Confucianism",
+                "phonetic": "[kənfjúːʃənizm]",
+                "translation": "儒教",
+                "meaning": "孔子（Confucius）の教えに基づく中国の倫理・哲学・政治思想体系。<br>仁・礼・義などを核心的価値とする。"
+            },
+            {
+                "word": "secular",
+                "phonetic": "[sékjulər]",
+                "translation": "世俗的な",
+                "meaning": "宗教や神聖なものとは無関係な、この世的・現世的な様子。<br>worldly と同義。divine（神の）の対義語。"
+            },
+            {
+                "word": "ecclesial",
+                "phonetic": "[ikléziəl]",
+                "translation": "教会の",
+                "meaning": "キリスト教の教会や教会組織に関する形容詞。<br>ecclesiastical と同義。"
+            },
+            {
+                "word": "Catholicism",
+                "phonetic": "[kəθɑ́ləsizm]",
+                "translation": "カトリックの信仰・教義",
+                "meaning": "ローマ教皇を頂点とするキリスト教の一派（カトリック教会）の信仰・教義体系。<br>catholicity（普遍性・包括性）と関連する。"
+            },
+            {
+                "word": "pagan",
+                "phonetic": "[péigən]",
+                "translation": "異教徒",
+                "meaning": "キリスト教・ユダヤ教・イスラム教などの一神教以外の多神教を信仰する人。<br>また、無宗教者を蔑称的に指すこともある。"
+            },
+            {
+                "word": "worship",
+                "phonetic": "[wɜ́ːrʃip]",
+                "translation": "崇拝・礼拝",
+                "meaning": "神や聖なる存在に対して敬意・信仰を示す行為や儀式。<br>monk（修道士）、convert（改宗者）と関連する文脈で使われる。"
+            },
+            {
+                "word": "monastery",
+                "phonetic": "[mɑ́nəstèri]",
+                "translation": "修道院",
+                "meaning": "修道士・修道女が共同で宗教的生活を営む施設。<br>Pope（教皇）が率いるカトリック教会組織の一部。"
+            },
+            {
+                "word": "hymn",
+                "phonetic": "[him]",
+                "translation": "賛美歌・聖歌",
+                "meaning": "神や宗教的な主題を称えて歌われる歌曲。<br>キリスト教の礼拝や宗教行事で広く用いられる。"
+            },
+            {
+                "word": "priest",
+                "phonetic": "[priːst]",
+                "translation": "司祭・聖職者",
+                "meaning": "宗教的儀式を執り行い、信者を導く役職を持つ人。<br>カトリックでは叙階された聖職者を指す。"
+            },
+            {
+                "word": "cathedral",
+                "phonetic": "[kəθíːdrəl]",
+                "translation": "大聖堂",
+                "meaning": "司教座（bishop's seat）のある主要な教会建築。<br>規模が大きく、その地域のキリスト教の中心的施設となる。"
+            },
+            {
+                "word": "resurrection",
+                "phonetic": "[rèzərékʃən]",
+                "translation": "復活",
+                "meaning": "死から再び生き返ること。<br>大文字の the Resurrection は「キリストの復活」を特に指す。"
+            },
+            {
+                "word": "mythology",
+                "phonetic": "[miθɑ́lədʒi]",
+                "translation": "神話",
+                "meaning": "ある文化や民族に伝わる神々・英雄・宇宙の起源などに関する物語・伝承の体系。<br>myth（神話・作り話）の派生語。"
+            }
+        ];
+
+        const app = new FlashcardApp(vocabulary);
+    </script>
+</body>
+</html>

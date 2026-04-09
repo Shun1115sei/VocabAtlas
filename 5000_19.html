@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>History (Vol. 19)</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>History (Vol. 19)</h1>
+        <div class="status-bar">
+            残り: <strong id="remaining-count">0</strong> 枚
+        </div>
+    </header>
+
+    <div class="card-container">
+        <div class="completed-overlay" id="completed-overlay">
+            <div class="completed-title">🎉</div>
+            <p class="completed-text">ALL WORDS LEARNED!</p>
+            <button class="btn-restart" onclick="app.resetAll()">Start Over</button>
+        </div>
+
+        <div class="card" id="flashcard">
+            <div class="card-face card-front">
+                <div class="word" id="word">Word</div>
+                <div class="phonetic" id="phonetic">/phonetic/</div>
+                <button class="btn-audio" onclick="app.playAudio(event)" title="Pronounce">🔊</button>
+                <div class="click-hint">Click to Flip</div>
+            </div>
+            <div class="card-face card-back">
+                <div class="translation" id="translation">Translation</div>
+                <div class="meaning" id="meaning">Meaning</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls-container">
+        <div class="grading-group">
+            <button class="btn-grade btn-unknown" onclick="app.markUnknown(event)">
+                🔄 Review
+                <span>(Keep in list)</span>
+            </button>
+            <button class="btn-grade btn-known" onclick="app.markKnown(event)">
+                ✅ Got it
+                <span>(Remove)</span>
+            </button>
+        </div>
+
+        <div class="nav-group">
+            <button class="nav-btn" onclick="app.prevCard(event)">← Prev</button>
+            <button class="nav-btn" onclick="app.shuffleCards(event)">🔀 Shuffle</button>
+            <button class="nav-btn" onclick="app.resetAll()">↻ Reset</button>
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <a href="index.html" class="nav-btn" style="text-decoration:none;">🏠 Home</a>
+        </div>
+    </div>
+
+    <script src="assets/js/confetti.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <script>
+        const vocabulary = [
+            {
+                "word": "epoch",
+                "phonetic": "[épək]",
+                "translation": "時代",
+                "meaning": "重要な出来事や変化が起きた特定の時代・時期。<br>歴史的な節目を指すことが多い。"
+            },
+            {
+                "word": "medieval",
+                "phonetic": "[mìːdiíːvəl]",
+                "translation": "中世の",
+                "meaning": "中世（Middle Ages）に関する。<br>おおよそ5〜15世紀の時代を指す。"
+            },
+            {
+                "word": "feudalism",
+                "phonetic": "[fjúːdəlizm]",
+                "translation": "封建主義",
+                "meaning": "中世ヨーロッパの社会制度。<br>主君は臣下に土地を与え、臣下は主君に仕えるという主従関係を基本とした中世の社会制度。"
+            },
+            {
+                "word": "hereditary",
+                "phonetic": "[hərédətèri]",
+                "translation": "世襲の",
+                "meaning": "親から子へと受け継がれる性質や地位を表す形容詞。<br>世襲制の地位や財産に用いる。"
+            },
+            {
+                "word": "emperor",
+                "phonetic": "[émpərər]",
+                "translation": "皇帝",
+                "meaning": "帝国を統治する最高位の君主。<br>emperor（皇帝）に対応する女性形は empress（女帝）。"
+            },
+            {
+                "word": "aristocracy",
+                "phonetic": "[ærəstɑ́krəsi]",
+                "translation": "貴族政治",
+                "meaning": "貴族や特権階級による統治体制。<br>また、その支配階級そのものを指す。"
+            },
+            {
+                "word": "guild",
+                "phonetic": "[gild]",
+                "translation": "ギルド",
+                "meaning": "中世ヨーロッパ都市で設立された商工業者の同業組合。<br>街の貿易や商品の品質を維持・管理するために組織された。"
+            },
+            {
+                "word": "patron",
+                "phonetic": "[péitrən]",
+                "translation": "後援者・支援者",
+                "meaning": "芸術家や作家などの活動を経済的に支援する人。<br>中世では貴族や教会が芸術の patron となることが多かった。"
+            },
+            {
+                "word": "peasant",
+                "phonetic": "[péznt]",
+                "translation": "小作農",
+                "meaning": "中世において地主（landlord）から土地を借りて耕作する農民。<br>農業従事者として地主に従属した身分。"
+            },
+            {
+                "word": "serf",
+                "phonetic": "[sɜːrf]",
+                "translation": "農奴",
+                "meaning": "封建制度下で土地に縛られ地主に支配された農民。<br>tenant（借地人）や landlord（地主）と対比される概念。serf は not purchased（買われない）が土地に縛られていた。"
+            },
+            {
+                "word": "rebellion",
+                "phonetic": "[ribéljən]",
+                "translation": "反乱",
+                "meaning": "支配権力や権威に対して武力で抵抗すること。<br>revolt や uprising と類義語。"
+            },
+            {
+                "word": "Pre-Columbian",
+                "phonetic": "[priːkəlʌ́mbiən]",
+                "translation": "コロンブス以前の",
+                "meaning": "コロンブスがアメリカ大陸に到達した1492年以前のアメリカとその文化を指す形容詞。"
+            },
+            {
+                "word": "New World",
+                "phonetic": "[njúː wɜːrld]",
+                "translation": "新世界",
+                "meaning": "15〜16世紀にヨーロッパ人によって「発見」されたアメリカ大陸を指す。<br>Old World（旧世界＝ヨーロッパ・アジア・アフリカ）の対義語。"
+            },
+            {
+                "word": "pilgrim",
+                "phonetic": "[pílgrim]",
+                "translation": "巡礼者",
+                "meaning": "宗教的な目的で聖地を訪れる旅人。<br>Pilgrim（大文字）は、1620年にイギリスの宗教的弾圧を逃れてメイフラワー号に乗りアメリカに移住した清教徒の1人を指す。"
+            },
+            {
+                "word": "puritan",
+                "phonetic": "[pjúərətən]",
+                "translation": "清教徒",
+                "meaning": "16世紀後半、カルバン主義に基づいてイギリス国教会のさらなる改革を求めた宗教グループ。<br>後に宗教的弾圧を逃れて北米植民地へ移住した。"
+            },
+            {
+                "word": "colony",
+                "phonetic": "[kɑ́ləni]",
+                "translation": "植民地",
+                "meaning": "本国から離れた地域を支配・開拓した領土。<br>Colonies はアメリカ独立以前の13州を指す。"
+            },
+            {
+                "word": "plantation",
+                "phonetic": "[plæntéiʃən]",
+                "translation": "プランテーション・大農場",
+                "meaning": "主に熱帯・亜熱帯地方で行われた大規模な農業経営形態。<br>アメリカ南部では奴隷労働によって綿花・タバコ等を生産した。"
+            },
+            {
+                "word": "American Revolution",
+                "phonetic": "[əmérikən rèvəlúːʃən]",
+                "translation": "アメリカ独立革命",
+                "meaning": "1775〜1783年にイギリスの13植民地が独立を求めて戦った革命・独立戦争。<br>1776年の独立宣言につながった。"
+            },
+            {
+                "word": "Declaration of Independence",
+                "phonetic": "[dèkləréiʃən əv indipéndəns]",
+                "translation": "アメリカ独立宣言",
+                "meaning": "1776年にフィラデルフィアで採択された、アメリカ13植民地のイギリスからの独立を宣言した文書。"
+            },
+            {
+                "word": "frontier",
+                "phonetic": "[frʌntíər]",
+                "translation": "辺境地帯",
+                "meaning": "特に19世紀のアメリカにおける開拓地と未開発地の境界・辺境地帯。<br>西部開拓時代の象徴的な概念。"
+            },
+            {
+                "word": "Indian reservation",
+                "phonetic": "[índiən rèzərvéiʃən]",
+                "translation": "インディアン保護区",
+                "meaning": "米国政府がネイティブアメリカンのために指定した居住地区。<br>19世紀の強制移住政策により設置された。"
+            },
+            {
+                "word": "slavery",
+                "phonetic": "[sléivəri]",
+                "translation": "奴隷制度",
+                "meaning": "人を財産として所有し労働を強制する制度。<br>アメリカ南北戦争の主要な対立要因となった。"
+            },
+            {
+                "word": "abolitionist",
+                "phonetic": "[æbəlíʃənist]",
+                "translation": "奴隷制度廃止論者",
+                "meaning": "（特に米国での）奴隷制度の廃止を訴えた人物または運動家。<br>南北戦争前に北部で盛んになった社会運動。"
+            },
+            {
+                "word": "Civil War",
+                "phonetic": "[sívəl wɔːr]",
+                "translation": "アメリカ南北戦争",
+                "meaning": "1861〜1865年に起こったアメリカ合衆国の内戦。<br>奴隷制度をめぐる北部と南部の対立が原因で勃発し、北部（連邦）が勝利した。"
+            },
+            {
+                "word": "Emancipation Proclamation",
+                "phonetic": "[imænsəpéiʃən prɑ̀kləméiʃən]",
+                "translation": "奴隷解放宣言",
+                "meaning": "1863年、南北戦争中にリンカーン大統領が発布した宣言。<br>南部諸州の奴隷を解放することを宣言した歴史的文書。"
+            },
+            {
+                "word": "Reconstruction",
+                "phonetic": "[rìːkənstrʌ́kʃən]",
+                "translation": "再建時代",
+                "meaning": "南北戦争後（1865〜1877年）の米国の再建期。<br>旧南部諸州を連邦に再統合し、解放された奴隷の社会的地位を再構築しようとした時代。"
+            },
+            {
+                "word": "mechanization",
+                "phonetic": "[mèkənəzéiʃən]",
+                "translation": "機械化",
+                "meaning": "手作業を機械に置き換えること。<br>産業革命期に農業・製造業の生産性を劇的に向上させた。"
+            },
+            {
+                "word": "modernization",
+                "phonetic": "[mɑ̀dərnəzéiʃən]",
+                "translation": "近代化",
+                "meaning": "社会・経済・技術を現代的な水準に発展させるプロセス。<br>産業化・都市化・民主化などを含む広義の変革。"
+            },
+            {
+                "word": "Industrial Revolution",
+                "phonetic": "[indʌ́striəl rèvəlúːʃən]",
+                "translation": "産業革命",
+                "meaning": "18世紀末にイギリスで始まった生産技術の革新による大変革。<br>蒸気機関の普及により工場制機械工業が発展し、社会・経済を大きく変えた。"
+            },
+            {
+                "word": "Great Depression",
+                "phonetic": "[gréit dipréʃən]",
+                "translation": "大恐慌",
+                "meaning": "1929年にアメリカで始まり全世界に波及した深刻な経済不況。<br>株価の大暴落をきっかけに大量失業・経済縮小が起こった。"
+            }
+        ];
+
+        const app = new FlashcardApp(vocabulary);
+    </script>
+</body>
+</html>

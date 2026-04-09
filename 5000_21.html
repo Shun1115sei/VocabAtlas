@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archaeology (Vol. 21)</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Archaeology (Vol. 21)</h1>
+        <div class="status-bar">
+            残り: <strong id="remaining-count">0</strong> 枚
+        </div>
+    </header>
+
+    <div class="card-container">
+        <div class="completed-overlay" id="completed-overlay">
+            <div class="completed-title">🎉</div>
+            <p class="completed-text">ALL WORDS LEARNED!</p>
+            <button class="btn-restart" onclick="app.resetAll()">Start Over</button>
+        </div>
+
+        <div class="card" id="flashcard">
+            <div class="card-face card-front">
+                <div class="word" id="word">Word</div>
+                <div class="phonetic" id="phonetic">/phonetic/</div>
+                <button class="btn-audio" onclick="app.playAudio(event)" title="Pronounce">🔊</button>
+                <div class="click-hint">Click to Flip</div>
+            </div>
+            <div class="card-face card-back">
+                <div class="translation" id="translation">Translation</div>
+                <div class="meaning" id="meaning">Meaning</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls-container">
+        <div class="grading-group">
+            <button class="btn-grade btn-unknown" onclick="app.markUnknown(event)">
+                🔄 Review
+                <span>(Keep in list)</span>
+            </button>
+            <button class="btn-grade btn-known" onclick="app.markKnown(event)">
+                ✅ Got it
+                <span>(Remove)</span>
+            </button>
+        </div>
+
+        <div class="nav-group">
+            <button class="nav-btn" onclick="app.prevCard(event)">← Prev</button>
+            <button class="nav-btn" onclick="app.shuffleCards(event)">🔀 Shuffle</button>
+            <button class="nav-btn" onclick="app.resetAll()">↻ Reset</button>
+        </div>
+
+        <div style="text-align:center; margin-top:20px;">
+            <a href="index.html" class="nav-btn" style="text-decoration:none;">🏠 Home</a>
+        </div>
+    </div>
+
+    <script src="assets/js/confetti.js"></script>
+    <script src="assets/js/app.js"></script>
+
+    <script>
+        const vocabulary = [
+            {
+                "word": "archaeology",
+                "phonetic": "[ɑːrkiɑ́lədʒi]",
+                "translation": "考古学",
+                "meaning": "遺跡や遺物の特徴を発掘・分析することで、人類の歴史や過去の生活を理解するための基礎力を養う学問。"
+            },
+            {
+                "word": "antiquity",
+                "phonetic": "[æntíkwiti]",
+                "translation": "古代",
+                "meaning": "遠い過去の時代、特に古代ギリシャ・ローマの時代を指す。<br>antiquities は「古代の遺物」を意味する。"
+            },
+            {
+                "word": "radio carbon dating",
+                "phonetic": "[réidiou kɑ́ːrbən déitiŋ]",
+                "translation": "放射性炭素年代測定法",
+                "meaning": "物質に残っている放射性炭素（C-14）の濃度を測定することにより、遺物の年代を割り出す方法。<br>考古学の年代決定において重要な手法。"
+            },
+            {
+                "word": "prehistory",
+                "phonetic": "[priːhístəri]",
+                "translation": "先史時代",
+                "meaning": "文字記録が存在する以前の時代。<br>旧石器時代・新石器時代・青銅器時代などが含まれる。"
+            },
+            {
+                "word": "Stone Age",
+                "phonetic": "[stóun eidʒ]",
+                "translation": "石器時代",
+                "meaning": "石を利用して作られた道具を使用していた時代。<br>旧石器時代（Paleolithic）と新石器時代（Neolithic）に分かれる。"
+            },
+            {
+                "word": "Paleolithic",
+                "phonetic": "[pèiliəlíθik]",
+                "translation": "旧石器時代の",
+                "meaning": "Paleolithic Era（旧石器時代）は、石や骨で作った原始的な道具を使用していた時代。<br>新石器時代（Neolithic Era）の前の時代。"
+            },
+            {
+                "word": "Neolithic",
+                "phonetic": "[nìːəlíθik]",
+                "translation": "新石器時代の",
+                "meaning": "Neolithic Era（新石器時代）は、磨製石器を使用していた時代。<br>農業の始まりや定住生活と関連する。"
+            },
+            {
+                "word": "Bronze Age",
+                "phonetic": "[brɑ́nz eidʒ]",
+                "translation": "青銅器時代",
+                "meaning": "青銅製の道具や武器を作って使用していた時代。<br>石器時代の後、鉄器時代（Iron Age）の前に位置する。"
+            },
+            {
+                "word": "Iron Age",
+                "phonetic": "[áiərn eidʒ]",
+                "translation": "鉄器時代",
+                "meaning": "鉄製の道具や武器を作って使用していた時代。<br>青銅器時代（Bronze Age）の後に続く時代区分。"
+            },
+            {
+                "word": "cave art",
+                "phonetic": "[kéiv ɑːrt]",
+                "translation": "洞窟美術",
+                "meaning": "石器時代の人々が洞窟の壁に描いた絵画・彫刻。<br>スペインのアルタミラ洞窟の大牛から発見された旧石器時代の絵画が有名。"
+            },
+            {
+                "word": "chronology",
+                "phonetic": "[krənɑ́lədʒi]",
+                "translation": "年代記・年表",
+                "meaning": "歴史的事象や出来事を年代順に並べた記録。<br>考古学では遺物の年代を整理・把握するために用いる。"
+            },
+            {
+                "word": "excavate",
+                "phonetic": "[ékskəvèit]",
+                "translation": "〜を発掘する",
+                "meaning": "土の中に埋まった遺跡・遺物を掘り出すこと。<br>名詞形は excavation（発掘）。"
+            },
+            {
+                "word": "restoration",
+                "phonetic": "[rèstəréiʃən]",
+                "translation": "復元・修復",
+                "meaning": "損傷・破損した遺物や建造物を元の状態に戻すこと。<br>考古学・文化財保護の重要な作業。"
+            },
+            {
+                "word": "engrave",
+                "phonetic": "[ingréiv]",
+                "translation": "〜を刻む",
+                "meaning": "木・石・金属などの表面に文字や図案を彫ること。<br>名詞形は engraving（彫刻・彫り物）。"
+            },
+            {
+                "word": "fossilized",
+                "phonetic": "[fɑ́səlaizd]",
+                "translation": "化石化した",
+                "meaning": "生物の遺骸や痕跡が地層の中で石化した状態。<br>名詞形は fossil（化石）。"
+            },
+            {
+                "word": "specimen",
+                "phonetic": "[spésimən]",
+                "translation": "標本・試料",
+                "meaning": "研究・分析の目的で採集・保存した動植物や遺物の一例。<br>考古学では発掘された遺物の代表的なサンプルを指す。"
+            },
+            {
+                "word": "document",
+                "phonetic": "[dɑ́kjumənt]",
+                "translation": "記録・文書",
+                "meaning": "情報を記録した文書や資料。<br>動詞では「〜を記録する・文書化する」という意味になる。"
+            },
+            {
+                "word": "inscription",
+                "phonetic": "[inskrípʃən]",
+                "translation": "銘・碑文",
+                "meaning": "木に書かれたり、石や金属などに刻まれた文字や図案。<br>古代の遺跡や記念碑に見られる。"
+            },
+            {
+                "word": "notation",
+                "phonetic": "[noutéiʃən]",
+                "translation": "表記法・記号",
+                "meaning": "物事を記号で表す方法。<br>特に数学・科学・音楽での記号体系を指す。"
+            },
+            {
+                "word": "pictograph",
+                "phonetic": "[píktəgræf]",
+                "translation": "象形文字・絵文字",
+                "meaning": "物の形を象った絵で表された文字や記号。<br>hieroglyph（ヒエログリフ）と同義で使われることもある。"
+            },
+            {
+                "word": "artifact",
+                "phonetic": "[ɑ́ːrtifækt]",
+                "translation": "人工遺物",
+                "meaning": "人間が作った道具・器物・装飾品などの遺物。<br>一般的には「人工物・工芸品」という意味でも広く用いる。"
+            },
+            {
+                "word": "remains",
+                "phonetic": "[riméinz]",
+                "translation": "遺物・遺跡",
+                "meaning": "過去の人間活動の痕跡として残された建造物・遺骨・道具など。<br>常に複数形で用いる。"
+            },
+            {
+                "word": "relic",
+                "phonetic": "[rélik]",
+                "translation": "遺物・遺品",
+                "meaning": "過去の時代から残された物品や遺跡。<br>宗教的文脈では聖人の遺骨・遺品（聖遺物）を指す。"
+            },
+            {
+                "word": "deposit",
+                "phonetic": "[dipɑ́zit]",
+                "translation": "堆積物・埋蔵物",
+                "meaning": "地層や土中に積み重なった遺物・鉱物・土砂など。<br>「保証金・預金」という一般的な意味も持つ多義語。"
+            },
+            {
+                "word": "earthenware",
+                "phonetic": "[ɜ́ːrθənwèər]",
+                "translation": "土器・陶器",
+                "meaning": "粘土などを焼いて作った器物。<br>多孔質で磁器（porcelain）より低温で焼成されたもの。"
+            },
+            {
+                "word": "chip",
+                "phonetic": "[tʃip]",
+                "translation": "欠片・かけら",
+                "meaning": "器や道具の一部が欠けたもの、または小さな破片。<br>考古学では遺物の破片を指すことが多い。"
+            },
+            {
+                "word": "burial",
+                "phonetic": "[bérial]",
+                "translation": "埋葬",
+                "meaning": "遺体を土中に埋めること、またはその儀式。<br>古代の埋葬方法は当時の文化・宗教観を反映している。"
+            },
+            {
+                "word": "tomb",
+                "phonetic": "[tuːm]",
+                "translation": "墓",
+                "meaning": "遺体や遺骨を安置するための建造物または穴。<br>地下室・石室など様々な形式がある。"
+            },
+            {
+                "word": "cremation",
+                "phonetic": "[kriméiʃən]",
+                "translation": "火葬",
+                "meaning": "遺体を焼いて骨だけを残す埋葬方法。<br>burial（土葬）の対義的な概念として用いられる。"
+            },
+            {
+                "word": "exodus",
+                "phonetic": "[éksədəs]",
+                "translation": "脱出・大移動",
+                "meaning": "多くの人が同時に場所を離れる大規模な移動・脱出。<br>旧約聖書の「出エジプト記」も Exodus と呼ばれる。"
+            }
+        ];
+
+        const app = new FlashcardApp(vocabulary);
+    </script>
+</body>
+</html>
